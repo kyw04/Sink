@@ -12,12 +12,12 @@ public class Mover : MonoBehaviour
     private int jumpCount;
     private int dashCount;
 
-    public Vector2 footSize;
-    public float footPos;
+    public Vector2 footSize = new Vector2(0.5f, 0.25f);
+    public float footPos = 0.5f;
     
-    public float speed;
-    public float jumpPower;
-    public float dashPower;
+    public float speed = 15.0f;
+    public float jumpPower = 250.0f;
+    public float dashPower = 150.0f;
     
     private void Awake()
     {
