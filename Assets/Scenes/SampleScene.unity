@@ -536,6 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  jumpPower: 250
   dashPower: 250
 --- !u!114 &1358312253
 MonoBehaviour:

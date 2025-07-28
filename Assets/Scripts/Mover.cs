@@ -13,6 +13,7 @@ public class Mover : MonoBehaviour
     private Vector2 currentMove;
 
     public float speed;
+    public float jumpPower;
     public float dashPower;
     
     private void Awake()
@@ -39,6 +40,12 @@ public class Mover : MonoBehaviour
         Vector2.SmoothDamp(currentMove, new Vector2(value.x, 0), ref currentMove, 2.0f);
         Debug.Log(currentMove);
         transform.Translate(transform.right * currentMove * speed * Time.deltaTime);
+    }
+
+    private void OnJump()
+    {
+        rigi.linearVelocity = Vector2.zero;
+        rigi.AddForce(Vector2.up * jumpPower);
     }
     
     private void OnDash()
