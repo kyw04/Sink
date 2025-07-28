@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +11,9 @@ public class Mover : MonoBehaviour
     private Vector2 currentMove;
     private int jumpCount;
     private int dashCount;
+
+    public Vector2 footSize;
+    public float footPos;
     
     public float speed;
     public float jumpPower;
@@ -47,7 +48,7 @@ public class Mover : MonoBehaviour
 
     private bool OnGround()
     {
-        return Physics2D.BoxCast(transform.position, new Vector2(0.5f, 0.25f), 0, Vector2.down, 0.5f, LayerMask.GetMask("Floor"));
+        return Physics2D.BoxCast(transform.position, footSize, 0, Vector2.down, footPos, LayerMask.GetMask("Floor"));
     }
 
     private void FreezePositionY()
@@ -88,6 +89,6 @@ public class Mover : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = OnGround() ? Color.green : Color.red;
-        Gizmos.DrawWireCube(transform.position + Vector3.down * 0.5f, new Vector2(0.5f, 0.25f));
+        Gizmos.DrawWireCube(transform.position + Vector3.down * footPos, footSize);
     }
 }
