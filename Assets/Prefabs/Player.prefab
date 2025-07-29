@@ -203,4 +203,4 @@ MonoBehaviour:
   footPos: 0.5
   speed: 15
   jumpPower: 250
-  dashPower: 150
+  dashPower: 250

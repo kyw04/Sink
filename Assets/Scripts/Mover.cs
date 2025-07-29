@@ -95,7 +95,7 @@ public class Mover : MonoBehaviour
         deshRenderer.flip = direction;
         
         FreezePositionY();
-        Invoke(nameof(MeltPosition), 0.15f);
+        Invoke(nameof(MeltPosition), 0.25f);
         rigi.AddForce(direction * dashPower, ForceMode2D.Force);
     }
 
