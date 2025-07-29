@@ -12,6 +12,8 @@ public class Mover : MonoBehaviour
     private int jumpCount;
     private int dashCount;
 
+    public GameObject dashEffect;
+    
     public Vector2 footSize = new Vector2(0.5f, 0.25f);
     public float footPos = 0.5f;
     
@@ -81,6 +83,10 @@ public class Mover : MonoBehaviour
         dashCount++;
         
         Vector2 direction = sprite.flipX ? Vector2.right : -Vector2.right;
+        ParticleSystemRenderer deshRenderer = Instantiate(dashEffect).GetComponent<ParticleSystemRenderer>();
+        deshRenderer.flip = direction;
+        deshRenderer.transform.position = transform.position;
+        
         FreezePositionY();
         Invoke(nameof(MeltPosition), 0.15f);
         rigi.AddForce(direction * dashPower, ForceMode2D.Force);
