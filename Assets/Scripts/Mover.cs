@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ public class Mover : MonoBehaviour
     private int jumpCount;
     private int dashCount;
 
+    public GameObject doubleJumpEffect;
     public GameObject dashEffect;
     
     public Vector2 footSize = new Vector2(0.5f, 0.25f);
@@ -68,7 +70,13 @@ public class Mover : MonoBehaviour
     {
         if (jumpCount >= 2)
             return;
-        jumpCount += OnGround() ? 1 : 2;
+
+        jumpCount++;
+        if (!OnGround())
+        {
+            jumpCount++;
+            Instantiate(doubleJumpEffect, transform.position, quaternion.identity);
+        }
         
         CancelInvoke(nameof(MeltPosition));
         MeltPosition();
@@ -83,9 +91,8 @@ public class Mover : MonoBehaviour
         dashCount++;
         
         Vector2 direction = sprite.flipX ? Vector2.right : -Vector2.right;
-        ParticleSystemRenderer deshRenderer = Instantiate(dashEffect).GetComponent<ParticleSystemRenderer>();
+        ParticleSystemRenderer deshRenderer = Instantiate(dashEffect, transform.position, quaternion.identity).GetComponent<ParticleSystemRenderer>();
         deshRenderer.flip = direction;
-        deshRenderer.transform.position = transform.position;
         
         FreezePositionY();
         Invoke(nameof(MeltPosition), 0.15f);

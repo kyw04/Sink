@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f14b1b55b40274fbf690c217d4bc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doubleJumpEffect: {fileID: 8304315823603521002, guid: 7d04899a7c53b164b80c67afd22c5d54, type: 3}
   dashEffect: {fileID: 8304315823603521002, guid: fa95348c1b5365947a6bcac0bb5d9484, type: 3}
   footSize: {x: 0.5, y: 0.25}
   footPos: 0.5
