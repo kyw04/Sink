@@ -22,6 +22,7 @@ public class Mover : MonoBehaviour
     public float speed = 15.0f;
     public float jumpPower = 250.0f;
     public float dashPower = 150.0f;
+    public float dashCooldown = 1.0f;
     
     private void Awake()
     {
@@ -36,7 +37,6 @@ public class Mover : MonoBehaviour
         if (OnGround())
         {
             jumpCount = 0;
-            dashCount = 0;
         }
         
         Move();
@@ -96,9 +96,15 @@ public class Mover : MonoBehaviour
         
         FreezePositionY();
         Invoke(nameof(MeltPosition), 0.25f);
+        Invoke(nameof(DashRecovery), dashCooldown);
         rigi.AddForce(direction * dashPower, ForceMode2D.Force);
     }
 
+    private void DashRecovery()
+    {
+        dashCount--;
+    }
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = OnGround() ? Color.green : Color.red;
